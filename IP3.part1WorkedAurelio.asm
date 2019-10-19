@@ -56,25 +56,17 @@ N:   .word  12             # size of array
       ######################################################################
       
       ######################################################################
-      # PUT SWAP CODE HERE (IP3 Part 1)      
-      addu  $s4, $zero, 0  # int temp
-      sll $s4, $s2, 2      # i = 2 * 2 = 4         
-      add $s4, $s0, $s4    # RAM + i
-      lw $s4, 0($s4)       # temp = arr[i] 
+      # PUT SWAP CODE HERE (IP3 Part 1)         
+      sll $s4, $s2, 2      # int i = 2 * 2 = 4       
+      addu $t1, $s0, $s4   # tempRAM = RAM + i
+      lw $s4, 0($t1)       # tempOne = arr[i] 
+                 
+      sll $s5, $s3, 2      # int j = 5 * 4 = 20
+      addu $t2, $s0, $s5   # tempRAMTwo = RAM + j     
+      lw $s5, 0($t2)       # tempTwo = arr[j]
       
-      addu  $s5, $zero, 0  # int temp2      
-      sll $s5, $s3, 2      # j = 5 * 4 = 20      
-      add $s5, $s0, $s5    # RAM + j     
-      lw $s5, 0($s5)       # temp = arr[j]
-      
-      
-      
-      #SHIT########
-      #sw $s5, 8($s0)
-      #sw $s4, 20($s0)
-      #lw $s4, 8($s0)       # temp = 0 
-      #lw $s5, 20($s0)      # temp2 = 11 
-      
+      sw $s5, 0($t1)       # arr[i] = tempOne
+      sw $s4, 0($t2)       # arr[j] = tempTwo
       ######################################################################
       
       ######################################################################
